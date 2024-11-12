@@ -6,8 +6,8 @@ Supported thermal cameras:
 - Xtherm T3S, thanks to Angel-1024
 - Xtherm T2L, T2S+, thanks to Christoph Mair and DiminDDL
 
-It's a very simple hacked together lib, might be useful for somebody,  
-uses `matplotlib` which is a little bit on the slow side,  
+It's a very simple hacked together lib, might be useful for somebody,
+uses `matplotlib` which is a little bit on the slow side,
 or pure `opencv` - much faster but without most features
 
 Upon startup the app automatically looks for supported cameras by matching the resolutions.
@@ -30,7 +30,7 @@ keys:
     'a', 'z' - auto exposure on/off, auto exposure type
     'k', 'l' - set the thermal range to normal/high (only for the TS2+)
     'o'      - change the camera orientation (rotate 90 degs CW). Only in OpenCV
-    
+
     left, right, up, down - set exposure limits
 
 mouse:
@@ -40,7 +40,7 @@ mouse:
 While the program is running you can use these controls in the camera view to control how it looks and behaves.
 
 
-You can specify the video device directly with `-d` to the startup command to skip the search routine. 
+You can specify the video device directly with `-d` to the startup command to skip the search routine.
 
 Also for T2S+ V2 users (and potentially for others, where the camera sends raw data and doesn't do onboard processing resulting in the image looking like a pixelated mess) you can specify the `-r` option to tell the program to treat the camera stream as raw sensor data. This will perform a few calibration routines and present you with a usable image doing the sensor processing in python. There is also the `-o` parameter which adds an offset to the entire frames temperature values. This is useful for calibrating the camera since the raw mode sometimes ends up with a constant offset to the image, but this is specific to the camera and thus can be found once and then used for subsequent runs.
 
@@ -62,7 +62,7 @@ python ./pyplot.py 2022-09-11_18-49-07.npy
 
 ### Lock In Thermography
 
-This feature allows you to use the camera in a lock-in mode. This allows for very precise measurements of hotspots on anything that can be modulated in some way. Examples include silicon dies, circuit boards, people (lock in based on heart rate) and potentially many others. 
+This feature allows you to use the camera in a lock-in mode. This allows for very precise measurements of hotspots on anything that can be modulated in some way. Examples include silicon dies, circuit boards, people (lock in based on heart rate) and potentially many others.
 
 As mentioned above the device under test needs to be stimulated on command, the script sends commands into a provided serial port to do this.
 A `1\n` indicates that we want to turn the supply/stimulant on, a `0\n` turns it off. The modulation frequency, serial port and integration time are all provided as command line arguments.

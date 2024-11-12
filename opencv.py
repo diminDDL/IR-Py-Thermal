@@ -1,12 +1,15 @@
+#!/usr/bin/env python3
 
-#!/usr/bin/python3
-import numpy as np
+import pickle
+import time
+
 import cv2
+import numpy as np
+from skimage.exposure import equalize_hist, rescale_intensity
+
 import irpythermal
 import utils
-import time
-from skimage.exposure import rescale_intensity, equalize_hist
-import pickle
+
 draw_temp = True
 
 # cap = ht301_hacklib.HT301()
@@ -173,7 +176,7 @@ while True:
         # some delay is needed before calibration
         for _ in range(50):
             camera.read()
-        camera.calibrate() 
+        camera.calibrate()
     if key == ord("s"):
         cv2.imwrite(time.strftime("%Y-%m-%d_%H-%M-%S") + ".png", frame)
     if key == ord("o"):
@@ -183,7 +186,7 @@ while True:
     if key == ord("a"):
         # save to disk
         ret, frame = camera.cap.read()
-        data = (frame)
+        data = frame
         name = time.strftime("%Y-%m-%d_%H-%M-%S") + ".pkl"
         with open(name, "wb") as f:
             pickle.dump(data, f)
